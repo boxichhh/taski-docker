@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  pg_data:
+  static:
+
+services:
+  db:
+    image: postgres:13.10
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    image: boxichhh/taski_backend:latest   # Используем готовый образ из DockerHub
+    env_file: .env
+    volumes:
+      - static:/backend_static
+
+  frontend:
+    image: boxichhh/taski_frontend:latest  # Используем готовый образ
+    env_file: .env
+    volumes:
+      - static:/frontend_static
+
+  gateway:
+    image: boxichhh/taski_gateway:latest   # Готовый образ nginx/gateway
+    volumes:
+      - static:/staticfiles
+    ports:
+      - 8000:80
