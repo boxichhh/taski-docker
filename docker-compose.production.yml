@@ -31,5 +31,4 @@ services:
     volumes:
       - static:/staticfiles
     ports:
-      - 8001:80
-      - 444:443
+      - 8080:8080
