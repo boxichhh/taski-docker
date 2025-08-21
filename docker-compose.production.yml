@@ -31,4 +31,4 @@ services:
     volumes:
       - static:/staticfiles
     ports:
-      - 8080:8000
+      - "8000:80" 
